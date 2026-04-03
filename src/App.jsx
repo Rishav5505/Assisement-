@@ -11,7 +11,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, LayoutDashboard } from 'lucide-react';
 
 const DashboardContent = () => {
-  const { transactions, totalBalance, totals, role, setRole, darkMode, setDarkMode, activePage } = useFinance();
+  const { transactions, totalBalance, totals, role, setRole, darkMode, setDarkMode, activePage, setActivePage } = useFinance();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingTransaction, setEditingTransaction] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -80,26 +80,26 @@ const DashboardContent = () => {
         return (
           <div className="space-y-12">
             {/* Top Row: Summary Cards */}
-            <section className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <SummaryCard title="Main Balance" amount={totalBalance} type="balance" />
-              <SummaryCard title="Total Income" amount={totals.income} type="income" />
-              <SummaryCard title="Total Expense" amount={totals.expense} type="expense" />
+            <section className="grid grid-cols-3 gap-3 lg:gap-8">
+              <SummaryCard title="Balance" amount={totalBalance} type="balance" />
+              <SummaryCard title="Income" amount={totals.income} type="income" />
+              <SummaryCard title="Expense" amount={totals.expense} type="expense" />
             </section>
 
             {/* Recent Activity Quick View */}
-            <section className="bg-white dark:bg-slate-900/50 backdrop-blur-xl border border-slate-100 dark:border-slate-800 rounded-[2.5rem] p-8">
-              <div className="flex items-center justify-between mb-8">
+            <section className="bg-white dark:bg-slate-900/50 backdrop-blur-xl border border-slate-100 dark:border-slate-800 rounded-[2.5rem] p-6 lg:p-8">
+              <div className="flex items-center justify-between mb-6">
                 <div>
-                  <h3 className="text-xl font-black text-slate-900 dark:text-white">Recent Activity</h3>
-                  <p className="text-xs font-bold text-slate-400 mt-1 uppercase tracking-widest">Latest Updates</p>
+                  <h3 className="text-lg font-black text-slate-900 dark:text-white">Recent Activity</h3>
+                  <p className="text-[10px] font-bold text-slate-400 mt-1 uppercase tracking-widest">Latest Updates</p>
                 </div>
-                <button onClick={() => setActivePage('History')} className="text-xs font-bold text-blue-500 hover:text-blue-600 uppercase tracking-widest cursor-pointer">View All</button>
+                <button onClick={() => setActivePage('History')} className="text-[10px] font-bold text-blue-500 hover:text-blue-600 uppercase tracking-widest cursor-pointer">View All</button>
               </div>
-              <div className="flex flex-col md:flex-row gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {transactions.slice(0, 3).map((t) => (
-                  <div key={t.id} className="flex-1 bg-slate-50 dark:bg-slate-800/40 p-5 rounded-2xl border border-slate-100 dark:border-slate-800 group hover:border-blue-500/30 transition-all">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-xs ${t.type === 'Income' ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'}`}>
+                  <div key={t.id} className="flex flex-row md:flex-col items-center md:items-start gap-4 bg-slate-50 dark:bg-slate-800/40 p-4 rounded-2xl border border-slate-100 dark:border-slate-800 group hover:border-blue-500/30 transition-all">
+                    <div className="flex items-center gap-4 flex-1">
+                      <div className={`w-10 h-10 shrink-0 rounded-xl flex items-center justify-center font-black text-xs ${t.type === 'Income' ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'}`}>
                         {t.category[0]}
                       </div>
                       <div className="flex-1 truncate">
@@ -107,7 +107,7 @@ const DashboardContent = () => {
                         <p className="text-[10px] font-bold text-slate-400">{t.date}</p>
                       </div>
                     </div>
-                    <p className={`text-xl font-black ${t.type === 'Income' ? 'text-emerald-500' : 'text-slate-900 dark:text-white'}`}>
+                    <p className={`text-lg font-black shrink-0 ${t.type === 'Income' ? 'text-emerald-500' : 'text-slate-900 dark:text-white'}`}>
                       {t.type === 'Income' ? '+' : '-'}₹{t.amount.toLocaleString('en-IN')}
                     </p>
                   </div>
@@ -195,29 +195,29 @@ const DashboardContent = () => {
         <div className="max-w-7xl mx-auto">
           {/* Header Section */}
           <header className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div>
+            <div className="text-left w-full">
               <div className="flex items-center gap-2 mb-1">
                 <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
                 <span className="text-emerald-500 font-bold uppercase tracking-[0.2em] text-[10px]">Live Session</span>
               </div>
-              <h4 className="text-slate-400 font-bold text-sm">Welcome back, {role === 'Admin' ? 'A. Johnson' : 'S. Viewer'}</h4>
-              <h1 className="text-4xl lg:text-5xl font-black text-slate-900 dark:text-white mt-1 tracking-tight">
+              <h4 className="text-slate-400 font-bold text-xs lg:text-sm">Welcome back, {role === 'Admin' ? 'A. Johnson' : 'S. Viewer'}</h4>
+              <h1 className="text-2xl lg:text-5xl font-black text-slate-900 dark:text-white mt-1 tracking-tight">
                 {activePage}
               </h1>
-              <p className="text-[10px] font-bold text-slate-400 mt-2 flex items-center gap-2 uppercase tracking-widest">
-                <LayoutDashboard className="w-3 h-3" />
-                {new Date().toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+              <p className="text-[9px] font-bold text-slate-400 mt-2 flex items-center gap-2 uppercase tracking-widest leading-none">
+                <LayoutDashboard className="w-2.5 h-2.5" />
+                {new Date().toLocaleDateString('en-IN', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })}
               </p>
             </div>
 
-            <div className="flex items-center gap-3 bg-white dark:bg-slate-900 p-2 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
-              <div className="px-5 py-2 bg-slate-50 dark:bg-slate-800 rounded-xl text-xs font-bold text-slate-500 dark:text-slate-400">
+            <div className="flex items-center gap-2 w-full sm:w-auto bg-white dark:bg-slate-900 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+              <div className="px-3 py-2 bg-slate-50 dark:bg-slate-800 rounded-xl text-[10px] font-bold text-slate-500 dark:text-slate-400 whitespace-nowrap">
                 Mode: {role}
               </div>
               {role === 'Admin' && (
                 <button
                   onClick={handleAdd}
-                  className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-bold shadow-lg shadow-blue-500/20 transition-all cursor-pointer relative z-10"
+                  className="flex-1 sm:flex-none px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-[10px] font-bold shadow-lg shadow-blue-500/20 transition-all cursor-pointer relative z-10 whitespace-nowrap"
                 >
                   Create Transaction
                 </button>

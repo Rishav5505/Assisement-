@@ -26,7 +26,7 @@ const InsightsPanel = () => {
         initial={{ opacity: 0, x: 20 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
-        className="bg-white dark:bg-slate-900 rounded-[2rem] shadow-xl p-6 border border-slate-100 dark:border-slate-800 shadow-slate-200/40"
+        className="bg-white dark:bg-slate-900 rounded-[1.5rem] lg:rounded-[2rem] shadow-xl p-5 lg:p-6 border border-slate-100 dark:border-slate-800 shadow-slate-200/40"
       >
         <div className="flex items-center justify-between mb-4">
           <div className="p-3 bg-amber-50 dark:bg-amber-500/10 rounded-2xl text-amber-500">
@@ -34,10 +34,10 @@ const InsightsPanel = () => {
           </div>
           <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Peak Spending</span>
         </div>
-        <h4 className="text-xl font-black text-slate-900 dark:text-white tracking-tighter">{highestCategory[0]}</h4>
-        <div className="mt-6 flex items-end justify-between">
-          <p className="text-sm font-bold text-slate-400">Monthly Total</p>
-          <p className="text-xl font-black text-amber-500">₹{highestCategory[1].toLocaleString('en-IN')}</p>
+        <h4 className="text-lg lg:text-xl font-black text-slate-900 dark:text-white tracking-tighter">{highestCategory[0]}</h4>
+        <div className="mt-4 lg:mt-6 flex items-end justify-between">
+          <p className="text-[10px] lg:text-sm font-bold text-slate-400">Monthly Total</p>
+          <p className="text-lg lg:text-xl font-black text-amber-500">₹{highestCategory[1].toLocaleString('en-IN')}</p>
         </div>
       </motion.div>
 
@@ -47,7 +47,7 @@ const InsightsPanel = () => {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.1 }}
-        className="bg-white dark:bg-slate-900 rounded-[2rem] shadow-xl p-6 border border-slate-100 dark:border-slate-800 shadow-slate-200/40"
+        className="bg-white dark:bg-slate-900 rounded-[1.5rem] lg:rounded-[2rem] shadow-xl p-5 lg:p-6 border border-slate-100 dark:border-slate-800 shadow-slate-200/40"
       >
         <div className="flex items-center justify-between mb-4">
           <div className="p-3 bg-blue-50 dark:bg-blue-500/10 rounded-2xl text-blue-500">
@@ -57,10 +57,10 @@ const InsightsPanel = () => {
         </div>
         <div className="flex items-center justify-between">
           <div>
-            <h4 className="text-3xl font-black text-slate-900 dark:text-white tracking-tighter">{expenseRatio.toFixed(1)}%</h4>
-            <p className="text-xs font-bold text-slate-400 uppercase mt-2">Income Spent</p>
+            <h4 className="text-2xl lg:text-3xl font-black text-slate-900 dark:text-white tracking-tighter">{expenseRatio.toFixed(1)}%</h4>
+            <p className="text-[10px] font-bold text-slate-400 uppercase mt-1">Income Spent</p>
           </div>
-          <div className="relative w-16 h-16">
+          <div className="relative w-12 h-12 lg:w-16 lg:h-16">
             <svg className="w-full h-full -rotate-90">
               <circle cx="32" cy="32" r="28" fill="none" stroke="currentColor" strokeWidth="6" className="text-slate-100 dark:text-slate-800" />
               <circle
@@ -81,7 +81,7 @@ const InsightsPanel = () => {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.2 }}
-        className="bg-white dark:bg-slate-900 rounded-[2rem] shadow-xl p-6 border border-slate-100 dark:border-slate-800 shadow-slate-200/40"
+        className="bg-white dark:bg-slate-900 rounded-[1.5rem] lg:rounded-[2rem] shadow-xl p-5 lg:p-6 border border-slate-100 dark:border-slate-800 shadow-slate-200/40"
       >
         <div className="flex items-center justify-between mb-4">
           <div className="p-3 bg-emerald-50 dark:bg-emerald-500/10 rounded-2xl text-emerald-500">
@@ -107,7 +107,7 @@ const InsightsPanel = () => {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.3 }}
-        className="bg-blue-600 dark:bg-blue-600/90 rounded-[2rem] shadow-xl p-6 text-white relative overflow-hidden"
+        className="bg-blue-600 dark:bg-blue-600/90 rounded-[1.5rem] lg:rounded-[2rem] shadow-xl p-5 lg:p-6 text-white relative overflow-hidden"
       >
         <div className="relative z-10">
           <div className="flex items-center justify-between mb-6">

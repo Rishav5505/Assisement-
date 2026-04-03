@@ -12,32 +12,32 @@ const SummaryCard = ({ title, amount, type }) => {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ y: -5 }}
-      className={`relative overflow-hidden rounded-[1.5rem] p-6 transition-all shadow-xl shadow-slate-200/40 dark:shadow-none border border-slate-100 dark:border-slate-800 ${isBalance
+      className={`relative overflow-hidden rounded-[1.25rem] lg:rounded-[2rem] p-3 lg:p-6 transition-all shadow-xl shadow-slate-200/40 dark:shadow-none border border-slate-100 dark:border-slate-800 flex-1 min-w-0 ${isBalance
         ? 'bg-blue-600 text-white'
         : 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white'
         }`}
     >
-      <div className="flex flex-col gap-4 relative z-10">
+      <div className="flex flex-col gap-1 lg:gap-4 relative z-10">
         <div className="flex items-center justify-between">
-          <span className={`text-[10px] font-black uppercase tracking-[0.2em] ${isBalance ? 'text-white/60' : 'text-slate-400'
+          <span className={`text-[8px] lg:text-[10px] font-black uppercase tracking-[0.1em] lg:tracking-[0.2em] truncate ${isBalance ? 'text-white/60' : 'text-slate-400'
             }`}>
-            {title}
+            {title.split(' ')[1] || title}
           </span>
-          <div className={`p-2.5 rounded-xl ${isBalance
+          <div className={`p-1.5 lg:p-2.5 rounded-lg lg:rounded-xl hidden sm:flex ${isBalance
             ? 'bg-white/10 text-white'
             : isIncome
               ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400'
               : 'bg-rose-50 text-rose-600 dark:bg-rose-500/10 dark:text-rose-400'
             }`}>
-            {isBalance ? <Wallet className="w-4 h-4" /> : isIncome ? <TrendingUp className="w-4 h-4" /> : <TrendingDown className="w-4 h-4" />}
+            {isBalance ? <Wallet className="w-3 h-3 lg:w-4 h-4" /> : isIncome ? <TrendingUp className="w-3 h-3 lg:w-4 h-4" /> : <TrendingDown className="w-3 h-3 lg:w-4 h-4" />}
           </div>
         </div>
 
         <div>
-          <h3 className="text-3xl font-black tracking-tighter">
-            ₹{amount.toLocaleString('en-IN')}
+          <h3 className="text-sm lg:text-3xl font-black tracking-tighter truncate">
+            ₹{amount.toLocaleString('en-IN', { maximumFractionDigits: 0 })}
           </h3>
-          <p className={`text-[10px] mt-1 font-medium ${isBalance ? 'text-white/50' : 'text-slate-400'}`}>
+          <p className={`hidden lg:block text-[10px] mt-1 font-medium ${isBalance ? 'text-white/50' : 'text-slate-400'}`}>
             {isIncome ? '+12.5% from last month' : isBalance ? 'Available funds' : 'Total spent this month'}
           </p>
         </div>
