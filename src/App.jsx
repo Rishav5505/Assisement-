@@ -210,16 +210,17 @@ const DashboardContent = () => {
               </p>
             </div>
 
-            <div className="flex items-center gap-2 w-full sm:w-auto bg-white dark:bg-slate-900 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
-              <div className="px-3 py-2 bg-slate-50 dark:bg-slate-800 rounded-xl text-[10px] font-bold text-slate-500 dark:text-slate-400 whitespace-nowrap">
-                Mode: {role}
+            <div className="flex items-center gap-2 w-full sm:w-auto bg-white dark:bg-slate-900 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div className="px-2.5 py-2 bg-slate-50 dark:bg-slate-800 rounded-xl text-[9px] font-black text-slate-500 dark:text-slate-400 whitespace-nowrap">
+                Role: {role}
               </div>
               {role === 'Admin' && (
                 <button
                   onClick={handleAdd}
-                  className="flex-1 sm:flex-none px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-[10px] font-bold shadow-lg shadow-blue-500/20 transition-all cursor-pointer relative z-10 whitespace-nowrap"
+                  className="flex-1 sm:flex-none px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-[9px] font-black shadow-lg shadow-blue-500/20 transition-all cursor-pointer relative z-10 whitespace-nowrap"
                 >
-                  Create Transaction
+                  <span className="sm:hidden">Create New</span>
+                  <span className="hidden sm:inline">Create Transaction</span>
                 </button>
               )}
             </div>
